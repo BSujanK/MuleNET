@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mulenet"
+version = "0.1.0"
+description = "Bank-view, capacity-aware mule-account detection on IBM AMLworld with an attention-free multigraph GNN"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "scipy>=1.10",
+  "scikit-learn>=1.3",
+  "torch>=2.1",
+]
+
+[project.optional-dependencies]
+baselines = ["xgboost>=2.0"]
+gfp = ["snapml"]  # IBM Graph Feature Preprocessor (Linux only)
+dev = ["pytest>=7"]
+
+[project.scripts]
+mulenet = "mulenet.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["mulenet*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
